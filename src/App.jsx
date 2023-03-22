@@ -11,11 +11,12 @@ import {
 import KpiCardGrid from "./KpiCardGrid";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
+import DonutView from "./DonutView";
 
 const App = () => {
   const [selectedView, setSelectedView] = useState("1");
   const [dateRange, setDateRange] = useState([
-    new Date(2023, 0, 1),
+    new Date(2023, 2, 5),
     new Date(),
   ]);
 
@@ -23,11 +24,11 @@ const App = () => {
     <main className="bg-slate-50 p-6 sm:p-10">
       <div className="md:flex justify-between">
         <div>
-          <Title>Dashboard</Title>
+          <Title>Vitalize Admin Dashboard</Title>
           <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
         </div>
         <DateRangePicker
-          className="max-w-sm"
+          className="max-w-sm pt-3"
           value={dateRange}
           onValueChange={setDateRange}
         />
@@ -45,9 +46,19 @@ const App = () => {
       {selectedView === "1" ? (
         <>
           <KpiCardGrid dateRange={dateRange} />
-          <div className="mt-6">
-            <ChartView dateRange={dateRange} />
-          </div>
+          <Grid numColsMd={2} numColsLg={2} className="mt-6 gap-6">
+            <ChartView
+              dateRange={dateRange}
+              event={"Signed up"}
+              title={"# of sign ups"}
+            />
+            <ChartView
+              dateRange={dateRange}
+              event={"Coaching session subscribed"}
+              title={"# of sessions subscribed"}
+            />
+          </Grid>
+          <DonutView />
         </>
       ) : (
         <Card className="mt-6">
