@@ -8,7 +8,7 @@ import {
   Title,
   DateRangePicker,
 } from "@tremor/react";
-import KpiCardGrid from "./KpiCardGrid";
+import KpiCard from "./KpiCard";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
@@ -45,7 +45,43 @@ const App = () => {
 
       {selectedView === "1" ? (
         <>
-          <KpiCardGrid dateRange={dateRange} />
+          <Grid numColsMd={3} numColsLg={5} className="mt-6 gap-6">
+            <KpiCard
+              dateRange={dateRange}
+              event={"Signed up"}
+              title={"# of signups"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"One-on-One request submitted"}
+              title={"# of 1:1 requests"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Coaching session subscribed"}
+              title={"# of session signups"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Meditation track started"}
+              title={"# of meditation tracks listened to"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Daily check-in completed"}
+              title={"# of daily check-ins"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Peer support message sent"}
+              title={"# of peer messages sent"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Additional resources tapped"}
+              title={"# of times additional resources tapped"}
+            />
+          </Grid>
           <Grid numColsMd={2} numColsLg={2} className="mt-6 gap-6">
             <ChartView
               dateRange={dateRange}
