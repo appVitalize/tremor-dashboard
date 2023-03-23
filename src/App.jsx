@@ -12,11 +12,12 @@ import KpiCard from "./KpiCard";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
+import BarList from "./BarList";
 
 const App = () => {
   const [selectedView, setSelectedView] = useState("1");
   const [dateRange, setDateRange] = useState([
-    new Date(2023, 2, 5),
+    new Date(2023, 2, 5), // Our launch date was March 5th, 2023
     new Date(),
   ]);
 
@@ -59,7 +60,12 @@ const App = () => {
             <KpiCard
               dateRange={dateRange}
               event={"Coaching session subscribed"}
-              title={"# of session signups"}
+              title={"# of sessions signups"}
+            />
+            <KpiCard
+              dateRange={dateRange}
+              event={"Coaching session"}
+              title={"# of sessions joined"}
             />
             <KpiCard
               dateRange={dateRange}
@@ -110,7 +116,11 @@ const App = () => {
               title={"# of daily check-ins"}
             />
           </Grid>
-          <DonutView />
+          <Grid numColsMd={2} numColsLg={3} className="mt-6 gap-6">
+            <DonutView title={"Breakdowns are currently not functional"} />
+            <DonutView title={"Breakdowns are currently not functional"} />
+            <BarList title={"Breakdowns are currently not functional"} />
+          </Grid>
         </>
       ) : (
         <Card className="mt-6">

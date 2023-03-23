@@ -30,10 +30,10 @@ const cities = [
 const valueFormatter = (number) =>
   `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
-const DonutView = () => {
+const DonutView = ({ title }) => {
   return (
-    <Card className="max-w-lg mt-6">
-      <Title>Sales</Title>
+    <Card className="max-w-lg">
+      <Title>{title}</Title>
       <DonutChart
         className="h-72 mt-6"
         data={cities}
