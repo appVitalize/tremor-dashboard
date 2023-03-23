@@ -85,13 +85,29 @@ const App = () => {
           <Grid numColsMd={2} numColsLg={2} className="mt-6 gap-6">
             <ChartView
               dateRange={dateRange}
-              event={"Signed up"}
+              events={["Signed up"]}
               title={"# of sign ups"}
+              cumulative={true}
             />
             <ChartView
               dateRange={dateRange}
-              event={"Coaching session subscribed"}
-              title={"# of sessions subscribed"}
+              events={[
+                "Coaching session subscribed",
+                "One-on-One request submitted",
+              ]}
+              title={"Coaching signups"}
+              cumulative={true}
+            />
+            <ChartView
+              dateRange={dateRange}
+              events={["Meditation track started"]}
+              title={"# of meditation tracks listened to"}
+              cumulative={false}
+            />
+            <ChartView
+              dateRange={dateRange}
+              events={["Daily check-in completed"]}
+              title={"# of daily check-ins"}
             />
           </Grid>
           <DonutView />

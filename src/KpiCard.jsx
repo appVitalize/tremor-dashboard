@@ -22,16 +22,15 @@ const KpiCard = ({ dateRange, event, title }) => {
       const toDate = adjustedToDate.toISOString().split("T")[0];
 
       try {
-        const { data } = await axios.get(`${ROOT_URL}/api/mixpanelProxy`, {
+        const { data } = await axios.get(`${ROOT_URL}/api/get_kpi_data`, {
           params: {
-            projectId: PROJECT_ID,
-            fromDate: fromDate,
-            toDate: toDate,
-            event: `["${event}"]`,
+            event,
+            from_date: fromDate,
+            to_date: toDate,
+            granularity: "daily",
           },
         });
-
-        setMetric(Object.keys(data).length);
+        setMetric(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
