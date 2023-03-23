@@ -32,7 +32,7 @@ const valueFormatter = (number) =>
 
 const DonutView = ({ title }) => {
   return (
-    <Card className="max-w-lg">
+    <Card>
       <Title>{title}</Title>
       <DonutChart
         className="h-72 mt-6"

@@ -24,7 +24,7 @@ const data = [
 ];
 
 export default ({ title }) => (
-  <Card className="max-w-lg">
+  <Card>
     <Title>{title}</Title>
     <Flex className="mt-4">
       <Text>
