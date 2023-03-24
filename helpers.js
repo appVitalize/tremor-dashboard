@@ -7,13 +7,13 @@ const getDateGranularity = (fromDate, toDate) => {
   const diffInMilliseconds = endDate - startDate;
 
   if (diffInMilliseconds === 0) {
-    return "hourly";
+    return "hour";
   } else if (diffInMilliseconds < oneDay * 30) {
-    return "daily";
+    return "day";
   } else if (diffInMilliseconds < oneWeek * 26) {
-    return "weekly";
+    return "week";
   } else {
-    return "monthly";
+    return "month";
   }
 };
 
