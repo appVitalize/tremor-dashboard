@@ -32,9 +32,7 @@ const ChartView = ({ dateRange, events, title, cumulative = false }) => {
   useEffect(() => {
     const fetchData = async () => {
       const fromDate = dateRange[0].toISOString().split("T")[0];
-      const adjustedToDate = new Date(dateRange[1]);
-      adjustedToDate.setDate(adjustedToDate.getDate() - 1);
-      const toDate = adjustedToDate.toISOString().split("T")[0];
+      const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
         const { data } = await axios.get(`${ROOT_URL}/api/get_graph_data`, {

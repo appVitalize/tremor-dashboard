@@ -10,6 +10,7 @@ import {
   Text,
 } from "@tremor/react";
 import { ROOT_URL, PROJECT_ID } from "../config";
+import { getDateGranularity } from "../helpers";
 
 const KpiCard = ({ dateRange, event, title }) => {
   const [metric, setMetric] = useState(0);
@@ -17,9 +18,7 @@ const KpiCard = ({ dateRange, event, title }) => {
   useEffect(() => {
     const fetchData = async () => {
       const fromDate = dateRange[0].toISOString().split("T")[0];
-      const adjustedToDate = new Date(dateRange[1]);
-      adjustedToDate.setDate(adjustedToDate.getDate() - 1);
-      const toDate = adjustedToDate.toISOString().split("T")[0];
+      const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
         const { data } = await axios.get(`${ROOT_URL}/api/get_kpi_data`, {
@@ -27,7 +26,7 @@ const KpiCard = ({ dateRange, event, title }) => {
             event,
             from_date: fromDate,
             to_date: toDate,
-            granularity: "daily",
+            granularity: getDateGranularity(fromDate, toDate),
           },
         });
         setMetric(data);
