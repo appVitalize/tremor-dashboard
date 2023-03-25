@@ -35,7 +35,7 @@ const DonutView = ({ dateRange, event, property, title }) => {
     <Card className="flex flex-col">
       <Title>{title}</Title>
       <DonutChart
-        className="h-80 m-auto"
+        className="h-80 m-auto text-5xl"
         data={categories}
         category="value"
         index="name"
