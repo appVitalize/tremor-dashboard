@@ -21,7 +21,7 @@ const KpiCard = ({ dateRange, event, title }) => {
       const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
-        const { data } = await axios.get(`${ROOT_URL}/api/get_kpi_data`, {
+        const { data } = await axios.get(`${ROOT_URL}/api/getKpiData`, {
           params: {
             event,
             from_date: fromDate,

@@ -12,7 +12,7 @@ import KpiCard from "./KpiCard";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
-import BarList from "./BarList";
+import BarChart from "./BarChart";
 
 const App = () => {
   const [selectedView, setSelectedView] = useState("1");
@@ -117,9 +117,24 @@ const App = () => {
             />
           </Grid>
           <Grid numColsMd={2} numColsLg={3} className="mt-6 gap-6">
-            <DonutView title={"Breakdowns are currently not functional"} />
-            <DonutView title={"Breakdowns are currently not functional"} />
-            <BarList title={"Breakdowns are currently not functional"} />
+            <DonutView
+              dateRange={dateRange}
+              event="Mindfulness category tapped"
+              property="category"
+              title={"Taps by meditation category"}
+            />
+            <DonutView
+              dateRange={dateRange}
+              event="New journal entry created"
+              property="mood"
+              title={"Journal mood distributions"}
+            />
+            <BarChart
+              dateRange={dateRange}
+              event="Group joined"
+              property="name"
+              title={"# of signups by peer group"}
+            />
           </Grid>
         </>
       ) : (
