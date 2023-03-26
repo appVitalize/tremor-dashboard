@@ -15,8 +15,7 @@ import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
 import BarChart from "./BarChart";
-import { CashIcon } from "@heroicons/react/solid";
-import VitalizeIcon from "../vitalize.svg";
+import { ReactComponent as VitalizeIcon } from "../vitalize.svg";
 
 const App = () => {
   const [selectedView, setSelectedView] = useState("1");
@@ -29,7 +28,9 @@ const App = () => {
     <main className="bg-slate-50 p-6 sm:p-10">
       <div className="md:flex justify-between">
         <Flex justifyContent="start" className="space-x-4">
-          <Icon icon={CashIcon} variant="light" size="xl" />
+          <Card className="w-14 p-0">
+            <VitalizeIcon className="h-14 w-14" />
+          </Card>
           <div>
             <Title>Vitalize Admin Dashboard</Title>
             <Text>
