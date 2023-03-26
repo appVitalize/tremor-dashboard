@@ -38,11 +38,14 @@ const App = () => {
             </Text>
           </div>
         </Flex>
-        <DateRangePicker
-          className="max-w-sm pt-3"
-          value={dateRange}
-          onValueChange={setDateRange}
-        />
+        {selectedView == "1" && (
+          <DateRangePicker
+            className="max-w-sm pt-3"
+            value={dateRange}
+            onValueChange={setDateRange}
+            minDate={new Date(2023, 2, 5)} // Our launch date was March 5th, 2023
+          />
+        )}
       </div>
 
       <TabList
