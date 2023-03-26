@@ -97,8 +97,8 @@ const TableView = () => {
     (selectedNames.includes(salesPerson.name) || selectedNames.length === 0);
 
   return (
-    <Card>
-      <div className="sm:mt-6 hidden sm:flex sm:start sm:space-x-2">
+    <Card className="mt-6">
+      <div className="sm:mt-3 hidden sm:flex sm:start sm:space-x-2">
         <MultiSelectBox
           onValueChange={(value) => setSelectedNames(value)}
           placeholder="Select Salespeople"

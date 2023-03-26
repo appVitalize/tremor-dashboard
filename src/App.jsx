@@ -7,12 +7,16 @@ import {
   Text,
   Title,
   DateRangePicker,
+  Flex,
+  Icon,
 } from "@tremor/react";
 import KpiCard from "./KpiCard";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
 import BarChart from "./BarChart";
+import { CashIcon } from "@heroicons/react/solid";
+import VitalizeIcon from "../vitalize.svg";
 
 const App = () => {
   const [selectedView, setSelectedView] = useState("1");
@@ -24,10 +28,15 @@ const App = () => {
   return (
     <main className="bg-slate-50 p-6 sm:p-10">
       <div className="md:flex justify-between">
-        <div>
-          <Title>Vitalize Admin Dashboard</Title>
-          <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
-        </div>
+        <Flex justifyContent="start" className="space-x-4">
+          <Icon icon={CashIcon} variant="light" size="xl" />
+          <div>
+            <Title>Vitalize Admin Dashboard</Title>
+            <Text>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+            </Text>
+          </div>
+        </Flex>
         <DateRangePicker
           className="max-w-sm pt-3"
           value={dateRange}
@@ -40,8 +49,9 @@ const App = () => {
         onValueChange={(value) => setSelectedView(value)}
         className="mt-6"
       >
-        <Tab value="1" text="Overview" />
-        <Tab value="2" text="Detail" />
+        <Tab value="1" text="Engagement" />
+        <Tab value="2" text="Demographics" />
+        <Tab value="3" text="Detail" />
       </TabList>
 
       {selectedView === "1" ? (
@@ -137,10 +147,31 @@ const App = () => {
             />
           </Grid>
         </>
+      ) : selectedView === "2" ? (
+        <Grid numColsMd={2} numColsLg={3} className="mt-6 gap-6">
+          <DonutView
+            dateRange={dateRange}
+            event="Mindfulness category tapped"
+            property="category"
+            title={"Taps by meditation category"}
+          />
+          <DonutView
+            dateRange={dateRange}
+            event="New journal entry created"
+            property="mood"
+            title={"Journal mood distributions"}
+          />
+          <BarChart
+            dateRange={dateRange}
+            event="Group joined"
+            property="name"
+            title={"# of signups by peer group"}
+          />
+        </Grid>
+      ) : selectedView === "3" ? (
+        <TableView dateRange={dateRange} />
       ) : (
-        <Card className="mt-6">
-          <TableView dateRange={dateRange} />
-        </Card>
+        <></>
       )}
     </main>
   );
