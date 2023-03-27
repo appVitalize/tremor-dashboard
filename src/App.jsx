@@ -14,7 +14,7 @@ import KpiCard from "./KpiCard";
 import TableView from "./TableView";
 import ChartView from "./ChartView";
 import DonutView from "./DonutView";
-import BarChart from "./BarChart";
+import BarView from "./BarView";
 import { ReactComponent as VitalizeIcon } from "../vitalize.svg";
 
 const App = () => {
@@ -143,7 +143,7 @@ const App = () => {
               property="mood"
               title={"Journal mood distributions"}
             />
-            <BarChart
+            <BarView
               dateRange={dateRange}
               event="Group joined"
               property="name"
@@ -155,21 +155,28 @@ const App = () => {
         <Grid numColsMd={2} numColsLg={3} className="mt-6 gap-6">
           <DonutView
             dateRange={dateRange}
-            event="Mindfulness category tapped"
-            property="category"
-            title={"Taps by meditation category"}
+            userProperty="Profession"
+            title={"Breakdown by profession"}
           />
           <DonutView
             dateRange={dateRange}
-            event="New journal entry created"
-            property="mood"
-            title={"Journal mood distributions"}
+            userProperty="Department"
+            title={"Breakdown by department"}
           />
-          <BarChart
+          <BarView
             dateRange={dateRange}
-            event="Group joined"
-            property="name"
-            title={"# of signups by peer group"}
+            userProperty="Organization"
+            title={"Breakdown by organization"}
+          />
+          <BarView
+            dateRange={dateRange}
+            userProperty="$city"
+            title={"Breakdown by city"}
+          />
+          <BarView
+            dateRange={dateRange}
+            userProperty="$region"
+            title={"Breakdown by region"}
           />
         </Grid>
       ) : selectedView === "3" ? (

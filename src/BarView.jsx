@@ -4,7 +4,14 @@ import { Card, Flex, Text, Title, Bold, BarList } from "@tremor/react";
 import { ROOT_URL, PROJECT_ID } from "../config";
 import { getDateGranularity } from "../helpers";
 
-const BarChart = ({ dateRange, event, property, userProperty, title }) => {
+const BarView = ({
+  dateRange,
+  event,
+  property,
+  userProperty,
+  title,
+  maxCategories = 8,
+}) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -21,7 +28,7 @@ const BarChart = ({ dateRange, event, property, userProperty, title }) => {
               to_date: toDate,
             },
           });
-          setCategories(data);
+          setCategories(data.slice(0, maxCategories));
         } else {
           const { data } = await axios.get(`${ROOT_URL}/api/getBreakdownData`, {
             params: {
@@ -32,7 +39,7 @@ const BarChart = ({ dateRange, event, property, userProperty, title }) => {
               granularity: getDateGranularity(fromDate, toDate),
             },
           });
-          setCategories(data);
+          setCategories(data.slice(0, maxCategories));
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -58,4 +65,4 @@ const BarChart = ({ dateRange, event, property, userProperty, title }) => {
   );
 };
 
-export default BarChart;
+export default BarView;
