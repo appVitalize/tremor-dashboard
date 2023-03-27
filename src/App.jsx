@@ -155,27 +155,27 @@ const App = () => {
         <Grid numColsMd={2} numColsLg={3} className="mt-6 gap-6">
           <DonutView
             dateRange={dateRange}
-            userProperty="Profession"
+            profileProperty="Profession"
             title={"Breakdown by profession"}
           />
           <DonutView
             dateRange={dateRange}
-            userProperty="Department"
+            profileProperty="Department"
             title={"Breakdown by department"}
           />
           <BarView
             dateRange={dateRange}
-            userProperty="Organization"
+            profileProperty="Organization"
             title={"Breakdown by organization"}
           />
           <BarView
             dateRange={dateRange}
-            userProperty="$city"
+            profileProperty="$city"
             title={"Breakdown by city"}
           />
           <BarView
             dateRange={dateRange}
-            userProperty="$region"
+            profileProperty="$region"
             title={"Breakdown by region"}
           />
         </Grid>

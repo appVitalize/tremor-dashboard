@@ -8,7 +8,7 @@ const BarView = ({
   dateRange,
   event,
   property,
-  userProperty,
+  profileProperty,
   title,
   maxCategories = 8,
 }) => {
@@ -20,25 +20,31 @@ const BarView = ({
       const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
-        if (userProperty) {
-          const { data } = await axios.get(`${ROOT_URL}/api/getProfileData`, {
-            params: {
-              userProperty,
-              from_date: fromDate,
-              to_date: toDate,
-            },
-          });
+        if (profileProperty) {
+          const { data } = await axios.get(
+            `${ROOT_URL}/api/getProfilePropertyData`,
+            {
+              params: {
+                profileProperty,
+                from_date: fromDate,
+                to_date: toDate,
+              },
+            }
+          );
           setCategories(data.slice(0, maxCategories));
         } else {
-          const { data } = await axios.get(`${ROOT_URL}/api/getBreakdownData`, {
-            params: {
-              event,
-              property,
-              from_date: fromDate,
-              to_date: toDate,
-              granularity: getDateGranularity(fromDate, toDate),
-            },
-          });
+          const { data } = await axios.get(
+            `${ROOT_URL}/api/getEventPropertyData`,
+            {
+              params: {
+                event,
+                property,
+                from_date: fromDate,
+                to_date: toDate,
+                granularity: getDateGranularity(fromDate, toDate),
+              },
+            }
+          );
           setCategories(data.slice(0, maxCategories));
         }
       } catch (error) {
