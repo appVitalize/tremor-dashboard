@@ -149,6 +149,12 @@ const App = () => {
               property="name"
               title={"# of signups by peer group"}
             />
+            <BarView
+              dateRange={dateRange}
+              event="Daily check-in completed"
+              property="wellbeingRating"
+              title={"Wellbeing rating distributions"}
+            />
           </Grid>
         </>
       ) : selectedView === "2" ? (

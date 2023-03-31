@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Title, DonutChart } from "@tremor/react";
 import { ROOT_URL, PROJECT_ID } from "../config";
-import { getDateGranularity, COLORS } from "../helpers";
+import { getDateGranularity } from "../helpers";
 
 const DonutView = ({
   dateRange,
