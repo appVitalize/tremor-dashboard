@@ -35,12 +35,14 @@ const ChartView = ({ dateRange, events, title, cumulative = false }) => {
       const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
-        const { data } = await axios.get(`${ROOT_URL}/api/getGraphData`, {
-          params: {
-            events: JSON.stringify(events),
+        const { data } = await axios.post(`${ROOT_URL}/mixpanel-graph-data`, {
+            events,
             from_date: fromDate,
             to_date: toDate,
             granularity: getDateGranularity(fromDate, toDate),
+        }, {
+          headers: {
+            'content-type': 'application/json',
           },
         });
         setChartData(cumulative ? getCumulativeData(data) : data);

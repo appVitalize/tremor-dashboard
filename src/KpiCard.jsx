@@ -21,13 +21,15 @@ const KpiCard = ({ dateRange, event, title }) => {
       const toDate = dateRange[1].toISOString().split("T")[0];
 
       try {
-        const { data } = await axios.get(`${ROOT_URL}/api/getKpiData`, {
-          params: {
+        const { data } = await axios.post(`${ROOT_URL}/mixpanel-kpi-data`, {
             event,
             from_date: fromDate,
             to_date: toDate,
             granularity: getDateGranularity(fromDate, toDate),
-          },
+        }, {
+          headers: {
+            'content-type': 'application/json',
+          }
         });
         setMetric(data);
       } catch (error) {

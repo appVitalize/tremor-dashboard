@@ -21,28 +21,28 @@ const DonutView = ({
 
       try {
         if (profileProperty) {
-          const { data } = await axios.get(
-            `${ROOT_URL}/api/getProfilePropertyData`,
+          const { data } = await axios.post(
+            `${ROOT_URL}/mixpanel-profile-property-data`,
             {
-              params: {
                 profileProperty,
                 from_date: fromDate,
                 to_date: toDate,
-              },
+            }, {
+              headers: {
+                'content-type': 'application/json',
+              }
             }
           );
           setCategories(data.slice(0, maxCategories));
         } else {
-          const { data } = await axios.get(
-            `${ROOT_URL}/api/getEventPropertyData`,
+          const { data } = await axios.post(
+            `${ROOT_URL}/mixpanel-event-property-data`,
             {
-              params: {
                 event,
                 property,
                 from_date: fromDate,
                 to_date: toDate,
                 granularity: getDateGranularity(fromDate, toDate),
-              },
             }
           );
           setCategories(data.slice(0, maxCategories));
